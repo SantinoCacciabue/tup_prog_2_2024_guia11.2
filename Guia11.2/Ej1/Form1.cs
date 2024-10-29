@@ -79,7 +79,7 @@ namespace Ej1
                 string email = tBemail.Text;              
                 string pat = tBpatente.Text;
                 p = new Propietario(dni, nom, email);
-                vtv = new VTV(pat, p);
+                vtv = FiscalizadorVTV.AgregarVTV(p, pat);
                 int i = 0;
                 FormEvaluacion ev;
                 FormVer ver = new FormVer();
@@ -120,8 +120,7 @@ namespace Ej1
                     ver.tBdatos.Text += eval.ToString();
                     i++;
                 }
-                ver.tBdatos.Text += vtv.ToString();
-                FiscalizadorVTV.AgregarVTV(p, pat).Aprobacion=vtv.Aprobacion;
+                ver.tBdatos.Text += vtv.ToString();                
                 ver.ShowDialog();
             }                      
             catch (DniInvalidoException ex)

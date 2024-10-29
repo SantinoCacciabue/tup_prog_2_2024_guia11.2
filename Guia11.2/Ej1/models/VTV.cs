@@ -29,12 +29,12 @@ namespace Ej1.models
                 return verificaciones[i];
             }
         }
-        public TipoAprobación Aprobacion
+        public TipoAprobación VerificarAprobacion()
         {
-            get
-            {
-                int min = 0;
-                for(int i = 0;i<CantidadVerificaciones;i++)
+
+            
+               int min = 0;
+             for(int i = 0;i<CantidadVerificaciones;i++)
                 {
                     Evaluacion ev = verificaciones[i];
                     if (i == 0)
@@ -45,13 +45,9 @@ namespace Ej1.models
                     {
                         min = (int)ev.Evaluar();
                     }
-                }
+             }
                 return (TipoAprobación)min;
-            }
-            set
-            {
-                _ = value;
-            }
+            
         }
         public VTV(string patente,Propietario p)
         {
@@ -108,15 +104,15 @@ namespace Ej1.models
         }
         public override string ToString()
         {
-            string a = $"{propietario}{Patente}-{Aprobacion}-{Fecha}\r\n";
-            if(Aprobacion==TipoAprobación.Aprobado)
+            string a = $"-------------------------------------------------\r\n{propietario}{Patente}-{VerificarAprobacion()}-{Fecha}\r\n";
+            if(VerificarAprobacion()==TipoAprobación.Aprobado)
             {
-                return $"{a}Fecha Vencimiento: {Fecha.AddYears(1)}";
+                return $"{a}Fecha Vencimiento: {Fecha.AddYears(1)}\r\n-------------------------------------------------";
             }
-            if(Aprobacion==TipoAprobación.Parcial)
+            if(VerificarAprobacion()==TipoAprobación.Parcial)
             {
                
-                return $"{a}Fecha Revalidación: {FechaRevalidacion()}";
+                return $"{a}Fecha Revalidación: {FechaRevalidacion()}\r\n-------------------------------------------------";
             }
             return a;
         }
